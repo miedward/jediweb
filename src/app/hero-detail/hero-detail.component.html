@@ -1,0 +1,28 @@
+<div *ngIf="hero">
+
+  <h2>{{hero.Name | uppercase}} Details</h2>
+  <div><span>id: </span>{{hero.ID}}</div>
+  <div>
+    <label>Name:
+      <input [(ngModel)]="hero.Name" placeholder="name"/>
+    </label>
+  </div>
+  <div>
+    <label>Sense:
+      <input [(ngModel)]="hero.Sense" placeholder="name"/>
+    </label>
+  </div>
+  <div>
+    <label>Control:
+      <input [(ngModel)]="hero.Control" placeholder="name"/>
+    </label>
+  </div>
+  <div>
+    <label>Alter:
+      <input [(ngModel)]="hero.Alter" placeholder="name"/>
+    </label>
+  </div>
+
+</div>
+<button (click)="save()">save</button>
+<button (click)="goBack()">go back</button>

@@ -1,0 +1,169 @@
+https://www.codementor.io/julieisip/learn-rest-api-using-express-js-and-mysql-db-ldflyx8g2
+http://stayregular.net/blog/make-a-nodejs-api-with-mysql
+
+To connect:
+    mysql -uroot
+
+To have launchd start mariadb now and restart at login:
+  brew services start mariadb
+Or, if you don't want/need a background service you can just run:
+  mysql.server start
+macbook-pro:app mledwards$ mysql -u root
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
+macbook-pro:app mledwards$ brew services start mariadb
+==> Tapping homebrew/services
+Cloning into '/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services'...
+remote: Enumerating objects: 17, done.
+remote: Counting objects: 100% (17/17), done.
+remote: Compressing objects: 100% (14/14), done.
+remote: Total 17 (delta 0), reused 12 (delta 0), pack-reused 0
+Unpacking objects: 100% (17/17), done.
+Tapped 1 command (50 files, 62.5KB).
+==> Successfully started `mariadb` (label: homebrew.mxcl.mariadb)
+macbook-pro:app mledwards$ mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.3.12-MariaDB Homebrew
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> exit
+Bye
+macbook-pro:app mledwards$ mysql -u root < ~/Downloads/jediweb.sql
+ERROR 1046 (3D000) at line 1: No database selected
+macbook-pro:app mledwards$ mysql -u root jediweb< ~/Downloads/jediweb.sql
+ERROR 1049 (42000): Unknown database 'jediweb'
+macbook-pro:app mledwards$ mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 10.3.12-MariaDB Homebrew
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database jediweb
+    -> ;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> grant all on jediweb.* to 'jediweb'@'localhost' identified by 'jediwebpass';
+
+https://expressjs.com/en/starter/generator.html
+
+macbook-pro:node mledwards$ sudo npm install express-generator -g
+Password:
+/usr/local/bin/express -> /usr/local/lib/node_modules/express-generator/bin/express-cli.js
++ express-generator@4.16.0
+added 10 packages from 13 contributors in 0.949s
+macbook-pro:node mledwards$ express --view=pug jediweb-api
+
+   create : jediweb-api/
+   create : jediweb-api/public/
+   create : jediweb-api/public/javascripts/
+   create : jediweb-api/public/images/
+   create : jediweb-api/public/stylesheets/
+   create : jediweb-api/public/stylesheets/style.css
+   create : jediweb-api/routes/
+   create : jediweb-api/routes/index.js
+   create : jediweb-api/routes/users.js
+   create : jediweb-api/views/
+   create : jediweb-api/views/error.pug
+   create : jediweb-api/views/index.pug
+   create : jediweb-api/views/layout.pug
+   create : jediweb-api/app.js
+   create : jediweb-api/package.json
+   create : jediweb-api/bin/
+   create : jediweb-api/bin/www
+
+   change directory:
+     $ cd jediweb-api
+
+   install dependencies:
+     $ npm install
+
+   run the app:
+     $ DEBUG=jediweb-api:* npm start
+
+macbook-pro:node mledwards$ mkdir jediapi
+macbook-pro:node mledwards$ cd jediapi/
+macbook-pro:jediapi mledwards$ npm init -yes
+Wrote to /Users/mledwards/node/jediapi/package.json:
+
+{
+  "name": "jediapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+
+macbook-pro:jediapi mledwards$ npm install express –save
+npm ERR! code EINVALIDTAGNAME
+npm ERR! Invalid tag name "–save": Tags may not have any characters that encodeURIComponent encodes.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/mledwards/.npm/_logs/2019-01-29T21_11_37_188Z-debug.log
+macbook-pro:jediapi mledwards$ npm install express --save
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN jediapi@1.0.0 No description
+npm WARN jediapi@1.0.0 No repository field.
+
++ express@4.16.4
+added 48 packages from 36 contributors and audited 121 packages in 2.183s
+found 0 vulnerabilities
+
+macbook-pro:jediapi mledwards$ npm install mysql --save
+npm WARN jediapi@1.0.0 No description
+npm WARN jediapi@1.0.0 No repository field.
+
++ mysql@2.16.0
+added 9 packages from 14 contributors and audited 134 packages in 1.459s
+found 0 vulnerabilities
+
+macbook-pro:jediapi mledwards$ npm install body-parser
+npm WARN jediapi@1.0.0 No description
+npm WARN jediapi@1.0.0 No repository field.
+
++ body-parser@1.18.3
+updated 1 package and audited 164 packages in 0.884s
+found 0 vulnerabilities
+
+macbook-pro:jediapi mledwards$ npm install --save-dev nodemon
+
+> fsevents@1.2.7 install /Users/mledwards/node/jediapi/node_modules/fsevents
+> node install
+
+node-pre-gyp WARN Using needle for node-pre-gyp https download
+[fsevents] Success: "/Users/mledwards/node/jediapi/node_modules/fsevents/lib/binding/Release/node-v64-darwin-x64/fse.node" is installed via remote
+
+> nodemon@1.18.9 postinstall /Users/mledwards/node/jediapi/node_modules/nodemon
+> node bin/postinstall || exit 0
+
+Love nodemon? You can now support the project via the open collective:
+ > https://opencollective.com/nodemon/donate
+
+npm WARN jediapi@1.0.0 No description
+npm WARN jediapi@1.0.0 No repository field.
+
++ nodemon@1.18.9
+added 279 packages from 146 contributors and audited 2402 packages in 9.666s
+found 0 vulnerabilities
+
+macbook-pro:jediapi mledwards$
+
+macbook-pro:jediapi mledwards$ pwd
+/Users/mledwards/node/jediapi
+macbook-pro:jediapi mledwards$ nodemon server.js
+[nodemon] 1.18.9
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: *.*
+[nodemon] starting `node server.js`
+Jediweb listening on port 3000!
