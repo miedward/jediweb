@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
@@ -11,18 +11,40 @@ import { HeroService } from '../hero.service';
 export class HeroesComponent implements OnInit {
 
   heroes: Hero[];
+  viewStart: number;
+  viewInterval: number;
+  viewEnd: number;
+  totalHeroes: number = 0;
 
-  //constructor(private http: HttpClient,
-  //    private heroService: HeroService) { }
   constructor(private heroService: HeroService) { }
+
   ngOnInit() {
+    this.viewStart = 1;
+    this.viewInterval= 20;
+    this.viewEnd = this.viewStart + this.viewInterval;
     this.getHeroes();
   }
 
   getHeroes(): void {
     this.heroService.getHeroes()
-        .subscribe(heroes => this.heroes = heroes);
+        .subscribe(heroes => {
+          this.totalHeroes = heroes.length;
+          this.heroes = heroes.slice(this.viewStart, this.viewEnd);
+        });
   }
+  goBack(): void {
+    if (this.viewStart - this.viewInterval > 0) {
+     this.viewStart = this.viewStart - this.viewInterval;
+     this.viewEnd = this.viewEnd - this.viewInterval;
+     this.getHeroes();
+    }
+   }
+   goForward(): void {
+      this.viewStart = this.viewStart + this.viewInterval;
+      this.viewEnd = this.viewEnd + this.viewInterval;
+      this.getHeroes();
+    }
+
 }
 
 
