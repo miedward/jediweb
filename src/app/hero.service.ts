@@ -7,6 +7,11 @@ import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+// For some reason this has to be after const or it doesn't compile
 @Injectable({
   providedIn: 'root'
 })
@@ -47,6 +52,14 @@ export class HeroService {
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
+  /** PUT: update the hero on the server */
+updateHero (hero: Hero): Observable<any> {
+  const url = `${this.heroesUrl}/id/${hero.ID}`;
+  return this.http.put(url, hero, httpOptions).pipe(
+    tap(_ => this.log(`updated hero id=${hero.ID}`)),
+    catchError(this.handleError<any>('updateHero'))
+  );
+}
   /**
    * Handle Http operation that failed.
    * Let the app continue.
