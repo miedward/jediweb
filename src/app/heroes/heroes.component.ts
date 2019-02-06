@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { Observable } from 'rxjs';
+
+import { DigitOnlyDirective } from '../shared/components/digit-only.directive';
+
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
@@ -39,12 +42,17 @@ export class HeroesComponent implements OnInit {
      this.getHeroes();
     }
    }
-   goForward(): void {
+  goForward(): void {
       this.viewStart = this.viewStart + this.viewInterval;
       this.viewEnd = this.viewEnd + this.viewInterval;
       this.getHeroes();
     }
-
+  updateStart(ev: any) {
+    this.viewStart = ev.target.value;
+  }
+  updateEnd(ev: any) {
+    this.viewStart = ev.target.value;
+  }
 }
 
 

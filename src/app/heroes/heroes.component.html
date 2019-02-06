@@ -1,3 +1,4 @@
+
 <h2>My Heroes</h2>
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
@@ -9,13 +10,13 @@
 <div>
   <button *ngIf="viewStart != 1" (click)="goBack()">Back</button>
   <label>Start:
-    <input [(ngModel)]="viewStart" placeholder="1" size=2/>
+    <input [(ngModel)]="viewStart" placeholder="1" size=2 digitOnly/>
   </label>
   <label>End:
-    <input [(ngModel)]="viewEnd" placeholder="20" size=2/>
+    <input [(ngModel)]="viewEnd" placeholder="20" size=2 digitOnly/>
   </label>
   <label>Show:
-    <input [(ngModel)]="viewInterval" placeholder="20" size=2/>
+    <input [(ngModel)]="viewInterval" placeholder="20" digitOnly/>
   </label>
   <button *ngIf="viewEnd < totalHeroes" (click)="goForward()">Next</button>
 </div>
