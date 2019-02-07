@@ -1,24 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router, NavigationEnd } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
 import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { Hero } from '../../../domain/hero';
+import { HeroService } from '../../services/hero.service';
 
 @Component({
   selector: 'app-hero-search',
   templateUrl: './hero-search.component.html',
   styleUrls: [ './hero-search.component.css' ]
 })
+
 export class HeroSearchComponent implements OnInit {
   heroes$: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
+  private currentTerm:string = '';
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService,
+              private router: Router) {
+    this.router.events.subscribe((evt) => {
+      // Clear search term with route change
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      this.currentTerm = '';
+      this.search('');
+    });
+  }
 
   // Push a search term into the observable stream.
   search(term: string): void {

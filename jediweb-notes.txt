@@ -213,3 +213,6 @@ WHERE ID=1;
   Control=50,
   CareerNumber=1, TraditionNumber=5,
   SecondNumber=0, SkillPoints=0, Quest1=0
+
+
+import { HeroSearchComponent } from '../../core/components/hero-search/hero-search.component';

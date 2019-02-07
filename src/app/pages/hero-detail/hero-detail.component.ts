@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Hero } from '../hero';
+import { Hero } from '../../domain/hero';
 
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, NavigationEnd, UrlSegment} from '@angular/router';
 import { Location } from '@angular/common';
 
-import { HeroService }  from '../hero.service';
+import { HeroService }  from '../../core/services/hero.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -19,8 +19,12 @@ export class HeroDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private heroService: HeroService,
     private location: Location
-  ) {}
-
+  ) {
+    this.route.url.subscribe((s: UrlSegment[]) => {
+      // Update data if the url changes (due to the search bar, primarily)
+      this.getHero();
+    });
+  }
   ngOnInit(): void {
     this.getHero();
   }
@@ -30,7 +34,7 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.getHero(id)
       .subscribe(hero => this.hero = hero);
   }
-  
+
   save(): void {
      this.heroService.updateHero(this.hero)
        .subscribe(() => this.goBack());

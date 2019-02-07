@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { Hero } from '../../domain/hero';
+import { HeroService } from '../../core/services/hero.service';
 import { Observable } from 'rxjs';
 
-import { DigitOnlyDirective } from '../shared/components/digit-only.directive';
+import { DigitOnlyDirective } from '../../shared/components/digit-only.directive';
 
 @Component({
   selector: 'app-heroes',
@@ -17,13 +17,13 @@ export class HeroesComponent implements OnInit {
   viewStart: number;
   viewInterval: number;
   viewEnd: number;
-  totalHeroes: number = 0;
+  totalHeroes = 0;
 
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
     this.viewStart = 1;
-    this.viewInterval= 20;
+    this.viewInterval = 20;
     this.viewEnd = this.viewStart + this.viewInterval;
     this.getHeroes();
   }
