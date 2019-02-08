@@ -1,4 +1,8 @@
 /* HeroSearch private styles */
+:host {
+  float: right;
+}
+
 .search-result li {
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
@@ -9,6 +13,7 @@
   background-color: white;
   cursor: pointer;
   list-style-type: none;
+  margin-top: 0px;
 }
 
 .search-result li:hover {
@@ -16,9 +21,12 @@
 }
 
 .search-result li a {
-  color: #888;
+  color: #000000;
   display: block;
   text-decoration: none;
+  margin-top: 0px;
+  padding: 0px 0px;
+  background-color: transparent;
 }
 
 .search-result li a:hover {
@@ -34,6 +42,7 @@
 
 
 ul.search-result {
+
   margin-top: 0;
   padding-left: 0;
 }

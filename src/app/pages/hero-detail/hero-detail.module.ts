@@ -6,11 +6,10 @@ import { ActivatedRoute } from '@angular/router';
   declarations: [],
   imports: [
     CommonModule,
-   ActivatedRoute
+    ActivatedRoute
   ],
   exports: [
     HeroDetailModule
   ]
-]
 })
 export class HeroDetailModule { }
