@@ -11,6 +11,6 @@ import { ActivatedRoute } from '@angular/router';
   exports: [
     HeroDetailModule
   ]
-]
+
 })
 export class HeroDetailModule { }
