@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Hero } from '../../domain/hero';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -40,6 +40,27 @@ export class HeroService {
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     );
   }
+
+  getHeroByName(term: string): Observable<Hero> {
+    const url = `${this.heroesUrl}/name/${term}`;
+    return this.http.get<Hero>(url).pipe(
+      tap(_ => this.log(`fetched hero name=${term}`)),
+      catchError(this.handleError<Hero>(`getHero name=${term}`))
+    );
+  }
+
+  loginHeroByName(name: string, password: string): Observable<Hero> {
+
+    const url = `${this.heroesUrl}/login`;
+    return this.http.post<Hero>(url, {
+      Name: name,
+      Password: password
+    }).pipe(
+      tap(_ => this.log(`fetched hero name=${name}`)),
+      catchError(this.handleError<Hero>(`loginHeroByName failed for name=${name}`))
+    );
+  }
+
   /* GET heroes whose name contains search term */
   searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) {

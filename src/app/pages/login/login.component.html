@@ -1,3 +1,16 @@
+<div class="container">
+  <label>
+    <input type="text" placeholder="Username" [formControl]="username">
+    <input type="text" placeholder="Password" [formControl]="password">
+    <button (click)="login()" class="btn btn-dark">Log In</button>
+  </label>
+</div>
 <p>
-  login works!
+  User: {{ username.value }}
+</p>
+<p>
+  Password: {{ password.value }}
+</p>
+<p>
+  Token: {{ token.value }}
 </p>

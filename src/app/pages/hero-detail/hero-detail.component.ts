@@ -4,7 +4,7 @@ import { Hero } from '../../domain/hero';
 import {ActivatedRoute, NavigationEnd, UrlSegment} from '@angular/router';
 import { Location } from '@angular/common';
 
-import { HeroService }  from '../../core/services/hero.service';
+import { HeroService } from '../../core/services/hero.service';
 
 @Component({
   selector: 'app-hero-detail',

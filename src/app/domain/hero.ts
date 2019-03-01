@@ -1,7 +1,8 @@
+
+//ID, Name, Sense, Control, Alter, CareerNumber, TraditionNumber, SecondNumber, SkillPoints, Quest1
 export class Hero {
   ID: number;
   Name: string;
-  Password: string;
   Sense: number;
   Control: number;
   Alter: number;

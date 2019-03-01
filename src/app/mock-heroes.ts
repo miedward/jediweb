@@ -4,7 +4,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 1,
             "Name": "Alyssa K'Tal",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -17,7 +16,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 2,
             "Name": "Ylenic It'kla",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -30,7 +28,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 3,
             "Name": "Fondon Raas",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -43,7 +40,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 4,
             "Name": "Janath Meelin",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -56,7 +52,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 5,
             "Name": "Tobias Kel'ach'nar",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -69,7 +64,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 6,
             "Name": "Bithoff Jonansaan",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -82,7 +76,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 7,
             "Name": "H'ssani C''talan",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -95,7 +88,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 8,
             "Name": "Kerran Halcyon",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -108,7 +100,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 9,
             "Name": "Reena Bel Noir",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -121,7 +112,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 10,
             "Name": "Talia Ska",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -134,7 +124,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 11,
             "Name": "Wennic Ber'ni'lok",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -147,7 +136,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 12,
             "Name": "Rhaan",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -160,7 +148,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 13,
             "Name": "Durnoth",
-            "Password": "mle0924j",
             "Sense": 50,
             "Control": 50,
             "Alter": 50,
@@ -173,7 +160,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 15,
             "Name": "Amish",
-            "Password": "mle0924j",
             "Sense": 18,
             "Control": 13,
             "Alter": 13,
@@ -186,7 +172,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 22,
             "Name": "katrina",
-            "Password": "bondage",
             "Sense": 1,
             "Control": 1,
             "Alter": 1,
@@ -199,7 +184,6 @@ export const HEROES: Hero[] = [
         {
             "ID": 23,
             "Name": "cordelia",
-            "Password": "blahblah",
             "Sense": 13,
             "Control": 13,
             "Alter": 9,
