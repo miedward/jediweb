@@ -5,10 +5,10 @@ import { FormControl } from '@angular/forms';
 import { MessageService } from '../../core/services/message.service';
 
 import { Hero } from '../../domain/hero';
-import { HeroService } from '../../core/services/hero.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
-  selector: 'login-page',
+  selector: 'app-login-page',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -20,15 +20,16 @@ export class LoginComponent {
   @Input() hero: Hero = new Hero();
 
   constructor(private messageService: MessageService,
-              private heroService: HeroService) {}
+              private authService: AuthService) {}
 
-  login() {
+  public login() {
     this.log('received login request.');
-    this.heroService.loginHeroByName(this.username.value, this.password.value)
-      .subscribe(hero =>{
+    this.authService.loginHeroByName(this.username.value, this.password.value)
+      .subscribe(hero => {
         if (hero) {
           // this.token = token;
-          this.log('received token for ' + this.username.value);
+          this.log('login successful for ' + this.username.value);
+
           this.username.setValue('');
           this.password.setValue('');
           this.hero = new Hero();
@@ -38,9 +39,10 @@ export class LoginComponent {
       });
   }
 
+
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`LoginPage: ${message}`);
   }
 
 }

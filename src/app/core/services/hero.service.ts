@@ -22,6 +22,10 @@ export class HeroService {
   constructor(private http: HttpClient,
               private messageService: MessageService) { }
 
+  getHeroesUrl(): string {
+    return this.heroesUrl;
+  }
+
   getHeroes(): Observable<Hero[]> {
     // TODO: send the message _after_ fetching the heroes
     this.log('fetching heroes');
@@ -49,18 +53,6 @@ export class HeroService {
     );
   }
 
-  loginHeroByName(name: string, password: string): Observable<Hero> {
-
-    const url = `${this.heroesUrl}/login`;
-    return this.http.post<Hero>(url, {
-      Name: name,
-      Password: password
-    }).pipe(
-      tap(_ => this.log(`fetched hero name=${name}`)),
-      catchError(this.handleError<Hero>(`loginHeroByName failed for name=${name}`))
-    );
-  }
-
   /* GET heroes whose name contains search term */
   searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) {
@@ -73,12 +65,12 @@ export class HeroService {
     );
   }
   /** PUT: update the hero on the server */
-updateHero (hero: Hero): Observable<any> {
-  const url = `${this.heroesUrl}/id/${hero.ID}`;
-  return this.http.put(url, hero, httpOptions).pipe(
-    tap(_ => this.log(`updated hero id=${hero.ID}`)),
-    catchError(this.handleError<any>('updateHero'))
-  );
+  updateHero (hero: Hero): Observable<any> {
+    const url = `${this.heroesUrl}/id/${hero.ID}`;
+    return this.http.put(url, hero, httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${hero.ID}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
 }
   /**
    * Handle Http operation that failed.
